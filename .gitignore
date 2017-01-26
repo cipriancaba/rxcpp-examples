@@ -27,3 +27,16 @@
 *.exe
 *.out
 *.app
+
+.idea
+build
+externalNativeBuild
+.externalNativeBuild
+cmake-build-debug/
+*.iml
+.gradle
+local.properties
+/.idea/workspace.xml
+/.idea/libraries
+/build
+/captures
