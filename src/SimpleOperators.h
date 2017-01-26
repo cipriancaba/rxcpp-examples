@@ -7,6 +7,7 @@
 
 #include <json/json.hpp>
 #include <rxcpp/rx.hpp>
+#include "SimpleInterface.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -24,6 +25,7 @@ using namespace Rx;
 class SimpleOperators {
  public:
   function<observable<json>(observable<string>)> convertFromStringToJson();
+  template <class T> function<observable<T>(observable<T>)> validateImplementation(SimpleInterface component);
 };
 
 

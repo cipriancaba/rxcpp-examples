@@ -12,3 +12,17 @@ function<observable<json>(observable<string>)> SimpleOperators::convertFromStrin
       });
   };
 }
+
+template <class T> function<observable<T>(observable<T>)> SimpleOperators::validateImplementation(SimpleInterface component) {
+  return [&](observable<T> $str) {
+    return $str |
+           filter([&](const T item) {
+             if (component.whatsMyId() == "1") {
+               return true;
+             } else {
+               return false;
+             }
+            }
+           );
+  };
+}
