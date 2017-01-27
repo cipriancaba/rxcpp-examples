@@ -7,8 +7,11 @@
 function<observable<json>(observable<string>)> SimpleOperators::convertFromStringToJson() {
   return [](observable<string> $str) {
     return $str |
-      Rx::map([](const string s) {
-        return json::parse(s);
+      Rx::map([](const string& s) {
+          return json::parse(s);
+      }) |
+      Rx::on_error_resume_next([](std::exception_ptr){
+        return Rx::error<json>(runtime_error("custom exception"));
       });
   };
 }
